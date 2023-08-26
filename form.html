@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="form.css">
+    <title>Form</title>
+</head>
+<body>
+    
+        <div class="container">
+            <h2>Hitung Nilai Rata-Rata</h2>
+            <form id="formGrade">
+                <label for="name">Nama :</label>
+                <input class="name" type="text" id="name" required>
+                <br>
+                <br>
+
+                <label for="course">Mata Kuliah :</label>
+                <input type="text" id="course" required>
+                <br>
+                <br>
+
+                <label for="grade">Grade:</label>
+                <select id="grade" required>
+                    <option value="">Pilih Grade Anda</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+
+                <button type="button" onclick="calculateAverage()">Hitung</button>
+            </form>
+            <table id="resultTable" border="2">
+                <tr>
+                    <th>Nama</th>
+                    <th>Mata Kuliah</th>
+                    <th>Grade</th>
+                    <th>Rata-Rata</th>
+                </tr>
+            </table>
+        </div>
+
+</body>
+    <script>
+        function calculateAverage() {
+            let gradeValues = {A: 4, B: 3, C: 2, D: 1, E: 0};
+            let name = document.getElementById("name").value;
+            let course = document.getElementById("course").value;
+            let selectedGrade = document.getElementById("grade").value;
+
+            let dataGrade = gradeValues[selectedGrade];
+            console.log("dataGrade : ", dataGrade);
+
+
+            if (selectedGrade in gradeValues) {
+                const grade = gradeValues[selectedGrade];
+                console.log("gradeValue : ", grade);
+                const resultTable = document.getElementById("resultTable");
+
+                const newRow = resultTable.insertRow(-1);
+                newRow.insertCell(0).innerHTML = name;
+                newRow.insertCell(1).innerHTML = course;
+                newRow.insertCell(2).innerHTML = selectedGrade;
+                newRow.insertCell(3).innerHTML = grade.toFixed(2);
+
+            }
+        }
+    </script>
+
+</html>
